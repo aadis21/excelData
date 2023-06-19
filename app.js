@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var path       = require('path');
 var XLSX       = require('xlsx');
 var multer     = require('multer');
-const dotenv  = require('dotenv');
+const dotenv   = require('dotenv');
 
 dotenv.config({ path: './.env' })
 
@@ -41,9 +41,18 @@ app.use(express.static(path.resolve(__dirname,'public')));
 
 //collection schema
 var excelSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    phone: String,
+    studentId:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    name:String,
+    mobileNumber:String,
+    email:String,
+    loi:String,
+    batch:String,
+    attendance:String,
+    result:String,
 });
 
 var excelModel = mongoose.model('excelData',excelSchema);
